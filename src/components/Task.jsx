@@ -22,7 +22,7 @@ const Task = () => {
 
     const fetchTasks=async()=>{
         try {
-              const res=await axios.get(`http://localhost:8080/api/tasks/getTask/${userId}`)
+              const res=await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/tasks/getTask/${userId}`)
               setTasks(res.data)
         } catch (error) {
          toast.error("failed to get tasks")
@@ -37,7 +37,7 @@ const Task = () => {
             return toast.error("field must be required")
         }
         try{
-const addtask=await axios.post('http://localhost:8080/api/tasks/addTask', {...taskData, userId})
+const addtask=await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/tasks/addTask`, {...taskData, userId})
 toast.success("task added successfully")
 
 
@@ -56,7 +56,7 @@ toast.error("oops", error)
   const newdescription=prompt("enter new decription")
 if(newtask && newdescription){
     try {
-        const updatetask=await axios.put(`http://localhost:8080/api/tasks/updateTask/${id}`,{
+        const updatetask=await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/tasks/updateTask/${id}`,{
             task:newtask,
             description:newdescription
         })
@@ -71,7 +71,7 @@ if(newtask && newdescription){
 
 const handleDelete=async(id)=>{
     try {
-        const deletetask=await axios.delete(`http://localhost:8080/api/tasks/deleteTask/${id}`)
+        const deletetask=await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/tasks/deleteTask/${id}`)
         toast.success("delete successfully")
          fetchTasks();
     } catch (error) {
