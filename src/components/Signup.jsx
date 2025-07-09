@@ -23,7 +23,9 @@ const handleSubmit=async(e)=>{
      return  toast.error("field must be required")
     }
     try{
-  const res=await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/register`, signupData)
+  const res=await axios.post(`https://loginsignupbackend-60p0.onrender.com/api/auth/register`, signupData)
+
+
   console.log(res.data)
   toast.success("user registered successfully")
   setTimeout(() => {
